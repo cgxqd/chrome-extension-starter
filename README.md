@@ -13,6 +13,38 @@ cd YOURFOLDERNAME
 npm install
 ```
 
+### 目录结构
+```
+|-- chrome-extension-starter
+    |-- public
+    |   |-- manifest.json           // 扩展配置文件
+    |   |-- assets                  // 静态资源
+    |-- src
+        |-- background.ts           // 后台脚本
+        |-- content_script.ts       // 注入html脚本
+        |-- devtools                // 控制面板配置页面
+        |   |-- index.html
+        |   |-- main.ts
+        |-- helper                  // 帮助
+        |   |-- index.html
+        |-- options                 // 选项页面
+        |   |-- App.vue
+        |   |-- index.html
+        |   |-- main.ts
+        |-- panel                   // 控制面板页面
+        |   |-- App.vue
+        |   |-- index.html
+        |   |-- main.ts
+        |-- popup                   // 扩展程序弹层页面
+        |   |-- App.vue
+        |   |-- index.html
+        |   |-- main.ts
+        |-- tools                   // 内置工具函数
+            |-- index.ts
+            |-- tool.type.ts
+
+```
+
 **开始编码!** 已经为您设置了 `package.json` 和入口文件，只需保持这些文件的名称相同即可。
 
 ### 特征
