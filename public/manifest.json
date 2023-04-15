@@ -1,0 +1,48 @@
+{
+    "manifest_version": 3,
+    "version": "0.0.0",
+    "name": "chrome-extension",
+    "homepage_url": "https://www.xx.com",
+    "description": "chrome-extension description",
+    "icons": {
+        "16": "/assets/icon-16.png",
+        "32": "/assets/icon-32.png",
+        "48": "/assets/icon-48.png",
+        "128": "/assets/icon-128.png"
+    },
+    "action": {
+        "default_icon": "assets/icon-128.png",
+        "default_title": "扩展",
+        "default_popup": "src/popup/index.html"
+    },
+    "devtools_page": "src/devtools/index.html",
+    "background": {
+        "service_worker": "background.js",
+        "type": "module"
+    },
+    "options_page": "src/options/index.html",
+    "options_ui": {
+        "page": "src/options/index.html",
+        "open_in_tab": true
+    },
+    "content_scripts": [
+        {
+            "all_frames": true,
+            "matches": [
+                "<all_urls>"
+            ],
+            "css": [],
+            "js": [
+                "content_script.js"
+            ]
+        }
+    ],
+    "permissions": [
+        "tabs",
+        "scripting",
+        "notifications"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ]
+}
