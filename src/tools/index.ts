@@ -1,5 +1,5 @@
 import { SendMessage, SendMessageArgs, ReceiveMessage } from './tool.type';
-
+import { name } from '../../package.json';
 /**
  * 发送消息
  * @param opt.cmd 消息类型
@@ -40,7 +40,7 @@ export const receiveMessage: ReceiveMessage = (_cmd: string, cb) => {
 };
 
 /**
- * 获取标签页信息
+ * 后台脚本获取标签页信息
  */
 export const getTab = async (): Promise<chrome.tabs.Tab> =>
   new Promise((resolve) => {
@@ -67,4 +67,33 @@ export const onloadScript = () => {
       );
     });
   });
+};
+
+/**
+ * 热更新
+ */
+export const HMRServer = ({ port }: { port: number }) => {
+  if (process.env.NODE_ENV !== 'development') return;
+  const ws = new WebSocket(`ws://localhost:${port}/${name}/ctx`);
+  let timer: NodeJS.Timeout | undefined;
+
+  ws.onopen = async function () {
+    const { id } = (await sendMessageAsync({ cmd: 'GET_TAB' })) as chrome.runtime.MessageSender;
+    ws.send(JSON.stringify({ type: 'connection', id }));
+    if (timer) clearInterval(timer);
+    timer = setInterval(() => {
+      ws.send(JSON.stringify({ type: 'ping' }));
+    }, 1500);
+    console.log(`%c[${name}] connection established`, 'color: green');
+  };
+  ws.onmessage = async function (e) {
+    if (e.data === 'UPDATE_CONTENT') {
+      await sendMessageAsync({ cmd: 'RELOAD' });
+      window.location.reload();
+    }
+  };
+  ws.onclose = function () {
+    if (timer) clearInterval(timer);
+    console.log(`%c[${name}] connection closed.`, 'color: red');
+  };
 };

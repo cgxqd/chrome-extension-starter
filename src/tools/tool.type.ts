@@ -1,6 +1,6 @@
 export type SendMessageArgs = {
   cmd: string;
-  data: any;
+  data?: any;
 };
 
 export type SendMessage = ({ cmd, data }: SendMessageArgs, cb: (...args: any) => void) => void;

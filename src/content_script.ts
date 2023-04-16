@@ -1,11 +1,10 @@
-import { sendMessage } from './tools';
+import { sendMessage, HMRServer } from './tools';
 
-sendMessage(
-  {
-    cmd: 'test1',
-    data: {},
-  },
-  (res) => {
-    console.log('收到后台的消息', res);
-  },
-);
+/**
+ * 热更新
+ */
+HMRServer({ port: 8080 });
+
+sendMessage({ cmd: 'TEST', data: '前台数据' }, (res) => {
+  console.log('收到后台的消息', res);
+});

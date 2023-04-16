@@ -4,16 +4,17 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "hmr": "gulp -f gulpfile.mjs hmr",
     "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx",
-    "clean": "rimraf dist",
-    "start": "npm run clean && npm-run-all -p watch:b watch:cs watch:sw",
+    "clean": "rimraf dist && mkdir dist",
+    "start": "npm run clean && npm-run-all -p hmr watch:b watch:cs watch:sw",
     "build": "npm run clean && npm-run-all -p build:b build:cs build:sw",
     "build:b": "vue-tsc && vite build",
-    "build:cs": "vue-tsc && vite build -c vite.other.config.ts --mode content_script",
-    "build:sw": "vue-tsc && vite build -c vite.other.config.ts --mode background",
+    "build:cs": "vue-tsc && cross-env NODE_ENV=production vite build -c vite.other.config.ts --mode content_script",
+    "build:sw": "vue-tsc && cross-env NODE_ENV=production vite build -c vite.other.config.ts --mode background",
     "watch:b": "vue-tsc && vite build -w",
-    "watch:cs": "vue-tsc && vite build -c vite.other.config.ts --mode content_script -w",
-    "watch:sw": "vue-tsc && vite build -c vite.other.config.ts --mode background -w",
+    "watch:cs": "vue-tsc &&  cross-env NODE_ENV=development vite build -c vite.other.config.ts --mode content_script -w",
+    "watch:sw": "vue-tsc &&  cross-env NODE_ENV=development vite build -c vite.other.config.ts --mode background -w",
     "prepare": "husky install .husky"
   },
   "dependencies": {
@@ -26,11 +27,13 @@
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
     "@vitejs/plugin-vue": "^4.1.0",
+    "cross-env": "^7.0.3",
     "cz-git": "^1.6.1",
     "eslint": "^8.38.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.11.0",
+    "gulp": "^4.0.2",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.1",
     "npm-run-all": "^4.1.5",
@@ -38,7 +41,8 @@
     "rimraf": "^5.0.0",
     "typescript": "^4.9.5",
     "vite": "^4.2.0",
-    "vue-tsc": "^1.2.0"
+    "vue-tsc": "^1.2.0",
+    "ws": "^8.13.0"
   },
   "config": {
     "commitizen": {

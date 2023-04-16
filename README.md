@@ -1,6 +1,6 @@
 # Chrome Extension Starter
 
-一个入门项目，使创建 Chrome 扩展变得非常容易 .
+基于 Vue3 + TypeScript + Manifest V3 的入门项目，使创建 Chrome 扩展变得非常容易 .
 
 ### 使用
 
@@ -16,6 +16,7 @@ npm install
 ### 目录结构
 ```
 |-- chrome-extension-starter
+    |-- gulpfile.mjs                // 热更新逻辑
     |-- public
     |   |-- manifest.json           // 扩展配置文件
     |   |-- assets                  // 静态资源
@@ -50,7 +51,7 @@ npm install
 ### 特征
 
 - 零设置. :wink:
-- 基于 Vue3 和 TypeScript
+- **热更新** 使用 [Gulp](https://www.gulpjs.com.cn/) + [Ws](https://github.com/websockets/ws) 模块实现
 - **[Vite](https://cn.vitejs.dev/)** 用于遵循标准约定 Tree Shaking 的多个优化捆绑包
 - **[Prettier](https://github.com/prettier/prettier)** 和 **[ESLint](https://eslint.org/)** 用于代码格式和一致性
 - **git 挂钩** 使用 [Commitizen](https://github.com/commitizen/cz-cli) 和 [Husky](https://github.com/typicode/husky)
