@@ -6,8 +6,8 @@ import { name } from '../../package.json';
  * @param opt.data 发送的数据
  * @param cb 后台响应后的回调
  */
-export const sendMessage: SendMessage = (opt, cb) => {
-  chrome.runtime.sendMessage(opt, cb);
+export const sendMessage: SendMessage = (opt, cb?: (arg: any) => void) => {
+  chrome.runtime.sendMessage(opt, cb || (() => void 0));
 };
 
 /**
@@ -36,6 +36,7 @@ export const receiveMessage: ReceiveMessage = (_cmd: string, cb) => {
         response(res);
       }
     }
+    return true;
   });
 };
 
@@ -53,7 +54,7 @@ export const getTab = async (): Promise<chrome.tabs.Tab> =>
  * 后台动态加载文件
  */
 export const onloadScript = () => {
-  receiveMessage('loadScript1', async ({ data, response }) => {
+  receiveMessage('loadScript', async ({ data, response }) => {
     const { id = 0 } = await getTab();
     chrome.tabs.update(id, { active: true }, function () {
       chrome.scripting.executeScript(
