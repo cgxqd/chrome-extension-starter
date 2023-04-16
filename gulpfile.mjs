@@ -41,7 +41,7 @@ const watchDistTask = (done) => {
 // 监听资源
 const watchTask = (done) => {
   // watch(['dist/{background,content_script}*'], watchDistTask);
-  watch(['dist/**/**/*'], watchDistTask);
+  watch(['dist/**/*'], watchDistTask);
   watch(['public/**/*'], watchPulicTask);
   done();
 };
