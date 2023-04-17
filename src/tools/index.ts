@@ -6,7 +6,7 @@ import { name } from '../../package.json';
  * @param opt.data 发送的数据
  * @param cb 后台响应后的回调
  */
-export const sendMessage: SendMessage = (opt, cb?: (arg: any) => void) => {
+export const sendMessage: SendMessage = (opt, cb) => {
   chrome.runtime.sendMessage(opt, cb || (() => void 0));
 };
 
@@ -15,9 +15,9 @@ export const sendMessage: SendMessage = (opt, cb?: (arg: any) => void) => {
  * @param opt.cmd 消息类型
  * @param opt.data 发送的数据
  * @param cb background 响应后的回调
- * @returns {Promise<void>} 异步等待响应
+ * @returns {Promise<any>} 异步等待响应
  */
-export const sendMessageAsync = async (opt: SendMessageArgs) =>
+export const sendMessageAsync = async (opt: SendMessageArgs): Promise<any> =>
   new Promise((resolve) => {
     sendMessage(opt, resolve);
   });

@@ -3,7 +3,7 @@ export type SendMessageArgs = {
   data?: any;
 };
 
-export type SendMessage = ({ cmd, data }: SendMessageArgs, cb: (...args: any) => void) => void;
+export type SendMessage = ({ cmd, data }: SendMessageArgs, cb?: (...args: any) => void) => void;
 
 type ReceiveMessageCbArgs = {
   data: any;
