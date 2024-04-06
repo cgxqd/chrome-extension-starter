@@ -27,20 +27,35 @@
     },
     "content_scripts": [
         {
-            "all_frames": true,
+            "all_frames": false,
             "matches": [
                 "<all_urls>"
             ],
-            "css": [],
+            "css": [
+                "assets/elementPlus.css",
+                "assets/content.main.css"
+            ],
             "js": [
-                "content_script.js"
+                "content.main.js"
+            ]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "resources": [
+                "manifest.json",
+                "assets/*.js"
             ]
         }
     ],
     "permissions": [
         "tabs",
         "scripting",
-        "notifications"
+        "notifications",
+        "storage"
     ],
     "host_permissions": [
         "<all_urls>"

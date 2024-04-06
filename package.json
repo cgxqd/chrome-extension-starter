@@ -7,18 +7,23 @@
     "hmr": "gulp -f gulpfile.mjs hmr",
     "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx",
     "clean": "rimraf dist && mkdir dist",
-    "start": "npm run clean && npm-run-all -p hmr watch:b watch:cs watch:sw",
-    "build": "npm run clean && npm-run-all -p build:b build:cs build:sw",
-    "build:b": "vue-tsc && vite build",
-    "build:cs": "vue-tsc && cross-env NODE_ENV=production vite build -c vite.other.config.ts --mode content_script",
-    "build:sw": "vue-tsc && cross-env NODE_ENV=production vite build -c vite.other.config.ts --mode background",
-    "watch:b": "vue-tsc && vite build -w",
-    "watch:cs": "vue-tsc &&  cross-env NODE_ENV=development vite build -c vite.other.config.ts --mode content_script -w",
-    "watch:sw": "vue-tsc &&  cross-env NODE_ENV=development vite build -c vite.other.config.ts --mode background -w",
+    "start": "npm run clean && cross-env NODE_ENV=development npm-run-all -p hmr run",
+    "build": "npm run clean && cross-env NODE_ENV=production npm-run-all -p run",
+    "run": "npm-run-all -p run:popup run:options run:devtools run:helper run:panel run:background run:content.main",
+    "run:popup": "vite build --mode popup",
+    "run:options": "vite build --mode options",
+    "run:devtools": "vite build --mode devtools",
+    "run:helper": "vite build --mode helper",
+    "run:panel": "vite build --mode panel",
+    "run:background": "vite build --mode background",
+    "run:content.main": "vite build --mode content.main",
     "prepare": "husky install .husky"
   },
   "dependencies": {
-    "vue": "^3.2.47"
+    "element-plus": "^2.6.3",
+    "stylus": "^0.63.0",
+    "unplugin-vue-components": "^0.26.0",
+    "vue": "^3.4.21"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.1",
@@ -40,7 +45,7 @@
     "prettier": "^2.8.7",
     "rimraf": "^5.0.0",
     "typescript": "^4.9.5",
-    "vite": "^4.2.0",
+    "vite": "^5.2.7",
     "vue-tsc": "^1.2.0",
     "ws": "^8.13.0"
   },

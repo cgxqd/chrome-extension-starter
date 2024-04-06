@@ -1,9 +1,9 @@
-export type SendMessageArgs = {
-  cmd: string;
-  data?: any;
-};
-
-export type SendMessage = ({ cmd, data }: SendMessageArgs, cb?: (...args: any) => void) => void;
+export type SendMessage = (
+  cmd: string,
+  data: any,
+  cb?: (...args: any) => void,
+  toTab?: any,
+) => void;
 
 type ReceiveMessageCbArgs = {
   data: any;

@@ -55,6 +55,7 @@ npm install
 - **[Vite](https://cn.vitejs.dev/)** 用于遵循标准约定 Tree Shaking 的多个优化捆绑包
 - **[Prettier](https://github.com/prettier/prettier)** 和 **[ESLint](https://eslint.org/)** 用于代码格式和一致性
 - **git 挂钩** 使用 [Commitizen](https://github.com/commitizen/cz-cli) 和 [Husky](https://github.com/typicode/husky)
+- **content_scripts** 和 **background** 支持模块化
 
 ### NPM 命令
 
