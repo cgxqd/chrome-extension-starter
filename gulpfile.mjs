@@ -28,7 +28,7 @@ wss.on('connection', function connection(ws) {
 });
 
 const watchPulicTask = (done) => {
-  src(['public/*']).pipe(dest('dist/'));
+  src(['public/**/*']).pipe(dest('dist/'));
   sockets.forEach((socket) => socket.send(UPDATE_CONTENT));
   done();
 };
