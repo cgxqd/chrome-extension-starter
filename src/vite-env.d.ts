@@ -2,8 +2,8 @@
 declare global {
   /* eslint-disable */
   var __PROCESS_ENV: any;
-  const Vue: any;
-  const ElementPlus: any;
+  var Vue: any;
+  var ElementPlus: any;
   /* eslint-enable */
 }
 

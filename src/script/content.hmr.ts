@@ -5,4 +5,3 @@ if (env === 'development:hmr') {
   const { HMRServer } = await import('@/tools');
   HMRServer({ port: import.meta.env.VITE_PORT });
 }
-export {};

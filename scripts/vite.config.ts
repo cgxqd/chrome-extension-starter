@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import fs from 'fs-extra';
 import vue from '@vitejs/plugin-vue';
 import topLevelAwait from 'vite-plugin-top-level-await';
-import replaceImport from './vite-plugin-replace-import';
+import transformCode from './vite-plugin-transform-code';
 
 const __dirname = fileURLToPath(new URL('..', import.meta.url));
 
@@ -19,7 +19,7 @@ const inputs: any = {
   panel: resolve(__dirname, 'src/panel', 'index.html'),
 
   /** 后台脚本 */
-  background: resolve(__dirname, 'src/script/background.main.ts'),
+  background: resolve(__dirname, 'src/background/main.ts'),
 
   /**热更新内容脚本 */
   'content.hmr': resolve(__dirname, `src/script/content.hmr.ts`),
@@ -27,9 +27,14 @@ const inputs: any = {
   'content.main': resolve(__dirname, `src/content_script/main.ts`),
 };
 
-// 剥离外部依赖
-const external = {
-  vue: '/assets/vue.js',
+const transformOption = {
+  // 后台脚本
+  background: inputs['background'],
+
+  // 剥离外部依赖
+  external: {
+    vue: '/assets/vue.js',
+  },
 };
 
 const modes = Object.keys(inputs);
@@ -44,7 +49,7 @@ const modes = Object.keys(inputs);
         promiseExportName: '__tla',
         promiseImportName: (i: any) => `__tla_${i}`,
       }),
-      replaceImport(external),
+      transformCode(transformOption),
     ];
     const input = { [mode]: inputs[mode] };
 
@@ -91,7 +96,7 @@ const modes = Object.keys(inputs);
       };
     }
 
-    rollupOptions.external = Object.values(external);
+    rollupOptions.external = Object.values(transformOption.external);
 
     const config: any = {
       ...publicConf,
