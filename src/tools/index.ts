@@ -1,5 +1,5 @@
-import { SendMessage, ReceiveMessage } from './tool.type';
-import { name } from '../../package.json';
+import { SendMessage, ReceiveMessage } from '@/tools/tool.type';
+import { name } from '~/package.json';
 
 /**
  * 发送消息
@@ -90,7 +90,6 @@ export const onloadScript = () => {
  * 热更新
  */
 export const HMRServer = ({ port }: { port: number }) => {
-  if (process.env.NODE_ENV !== 'development') return;
   const ws = new WebSocket(`ws://localhost:${port}/${name}/ctx`);
   let timer: NodeJS.Timeout | undefined;
 

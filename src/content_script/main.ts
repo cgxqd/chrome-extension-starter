@@ -1,11 +1,14 @@
-import App from './App.vue';
+const { default: App } = await import('./App.vue');
+const { createApp } = (globalThis.Vue = await import(chrome.runtime.getURL('/assets/vue.js')));
 
-(async () => {
-  const { createApp } = await import('vue');
-  const app = document.createElement('div');
-  app.id = 'applictaion';
-  document.documentElement.appendChild(app);
-  createApp(App).mount('#applictaion');
-})();
+/** 引入 ElementPlus
+ *  js https://unpkg.com/element-plus/dist/index.full.js
+ *  css https://unpkg.com/element-plus/dist/index.css
+ */
+await import(chrome.runtime.getURL('/assets/elementPlus.js'));
+const el = document.createElement('div');
+el.id = 'applictaion';
+document.documentElement.appendChild(el);
+createApp(App).use(globalThis.ElementPlus).mount('#applictaion');
 
-export default {};
+export {};

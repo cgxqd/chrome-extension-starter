@@ -1,14 +1,13 @@
 <template>
-  <el-alert class="info" :title="`当前页面正在被扩展${name}监管`" type="warning" effect="dark" />
+  <el-alert v-if="isDev" class="info" :title="`当前页面正在被扩展${name}监管`" type="warning" effect="dark" />
 </template>
 <script setup lang="ts">
 import { ref, Ref } from 'vue';
-import { ElAlert } from 'element-plus';
 import { sendMessage } from '@/tools';
 
 let name: Ref<string> = ref('');
+let isDev: Ref<boolean> = ref(globalThis.__PROCESS_ENV === 'development:hmr')
 
-// eslint-disable-next-line no-undef
 fetch(chrome.runtime.getURL('manifest.json'))
   .then((res) => res.json())
   .then((manifest: any) => {

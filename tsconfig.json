@@ -24,7 +24,15 @@
       "~/*": [
         "./*"
       ]
-    }
+    },
+    "types": [
+      "element-plus/global",
+      "@types/chrome",
+      "@types/node"
+    ]
+  },
+  "ts-node": {
+    "esm": true
   },
   "include": [
     "src/**/*.ts",
