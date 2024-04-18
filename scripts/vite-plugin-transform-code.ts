@@ -1,3 +1,5 @@
+import { Plugin } from 'vite';
+
 const bgHMR = `
 receiveMessage('RELOAD', ({ sender }) => {
   chrome.runtime.reload();
@@ -9,13 +11,13 @@ receiveMessage('GET_TAB', ({ sender }) => sender);
 
 export default (
   options: {
-    external?: Object;
+    external?: object;
     background?: string;
   } = {},
-) => {
+): Plugin => {
   return {
     name: 'vite-plugin-transform-code',
-    transform(code: string, id: string) {
+    transform(code, id) {
       /** 后台脚本嵌入 HMR相关代码 */
       if (id.replace(/\//g, '\\') === options.background) {
         if (!/import {([^}]+)?\sreceiveMessage[,\s]([^}]+)?} from/.test(code)) {
@@ -28,10 +30,12 @@ export default (
        * 替换 import 路径为静态资源路径
        * 比如：import { xx } from 'vue' => import { xx } from '/assets/vue.js'
        */
-      Object.entries(options.external as {}).forEach(([oldPath, newPath]) => {
-        const regex = new RegExp(`from\\s+['"]${oldPath}['"]`, 'g');
-        code = code.replace(regex, `from '${newPath}'`);
-      });
+      if (options.external) {
+        Object.entries(options.external).forEach(([oldPath, newPath]) => {
+          const regex = new RegExp(`from\\s+['"]${oldPath}['"]`, 'g');
+          code = code.replace(regex, `from '${newPath}'`);
+        });
+      }
       return code;
     },
   };
