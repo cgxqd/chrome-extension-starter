@@ -1,4 +1,4 @@
-import { Plugin } from 'vite';
+import { type Plugin, normalizePath } from 'vite';
 
 const bgHMR = `
 receiveMessage('RELOAD', ({ sender }) => {
@@ -19,7 +19,7 @@ export default (
     name: 'vite-plugin-transform-code',
     transform(code, id) {
       /** 后台脚本嵌入 HMR相关代码 */
-      if (id.replace(/\//g, '\\') === options.background) {
+      if (normalizePath(id) === normalizePath(options.background ?? '')) {
         if (!/import {([^}]+)?\sreceiveMessage[,\s]([^}]+)?} from/.test(code)) {
           code = code.replace(/^/, `import { receiveMessage } from '@/tools';\r\n`);
         }

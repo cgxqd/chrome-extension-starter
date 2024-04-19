@@ -31,15 +31,6 @@
             "matches": [
                 "<all_urls>"
             ],
-            "js": [
-                "content.hmr.js"
-            ]
-        },
-        {
-            "all_frames": false,
-            "matches": [
-                "<all_urls>"
-            ],
             "css": [
                 "assets/elementPlus.css"
             ],
@@ -55,7 +46,6 @@
             ],
             "resources": [
                 "manifest.json",
-                ".env.json",
                 "assets/*.js",
                 "assets/*.css"
             ]
