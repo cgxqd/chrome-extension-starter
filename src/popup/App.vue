@@ -1,3 +1,3 @@
 <template>
-  <div>Popup</div>
+    <div>Popup</div>
 </template>

@@ -1,14 +1,9 @@
-export type SendMessage = (
-  cmd: string,
-  data: any,
-  cb?: (...args: any) => void,
-  toTab?: any,
-) => void;
+export type SendMessage = (cmd: string, data: any, cb?: (...args: any) => void, toTab?: any) => void;
 
 type ReceiveMessageCbArgs = {
-  data: any;
-  sender: chrome.runtime.MessageSender;
-  response: (response?: any) => void;
+    data: any;
+    sender: chrome.runtime.MessageSender;
+    response: (response?: any) => void;
 };
 export type ReceiveMessageCb = ({ data, sender, response }: ReceiveMessageCbArgs) => any;
 

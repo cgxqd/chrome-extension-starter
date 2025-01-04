@@ -1,0 +1,19 @@
+{
+	"[vue]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	/** 配置编辑器 */
+	"editor.formatOnPaste": true, // 粘贴时格式化代码
+	"editor.formatOnSave": true, // 每次保存的时候将代码按格式进行修复
+	"editor.detectIndentation": false, // vscode默认启用了根据文件类型自动设置tabsize的选项
+	"editor.tabSize": 4, // 重新设定tabsize,根据自己的习惯
+	"editor.insertSpaces": false, //tab时不插入空格
+	"editor.formatOnType": true, //开启自动格式化
+	/** 配置prettier */
+	"prettier.printWidth": 100, // 超过最大值换行
+	"prettier.tabWidth": 2, // 缩进字节数
+	"prettier.singleQuote": true, // 使用单引号代替双引号
+	"prettier.semi": true, // 句尾添加分号
+	"prettier.trailingComma": "es5", // 在对象或数组最后一个元素后面是否加逗号（在ES5中加尾逗号）
+	"prettier.bracketSpacing": true, // 在对象，数组括号与文字之间加空格 "{ foo: bar }"
+}

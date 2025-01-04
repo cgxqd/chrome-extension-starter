@@ -1,4 +1,4 @@
 <template>
-  <div>Option</div>
+    <div>Option</div>
 </template>
 <script setup lang="ts"></script>
