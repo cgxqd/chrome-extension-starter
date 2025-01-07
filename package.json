@@ -14,7 +14,8 @@
 	},
 	"dependencies": {
 		"element-plus": "^2.6.3",
-		"vue": "^3.5.13"
+		"vue": "^3.5.13",
+		"webext-bridge": "^6.0.1"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^19.6.1",
@@ -50,6 +51,7 @@
 		"vite": "^6.0.6",
 		"vite-plugin-top-level-await": "^1.4.1",
 		"vue-tsc": "^2.2.0",
+		"webextension-polyfill": "^0.12.0",
 		"ws": "^8.13.0"
 	},
 	"config": {

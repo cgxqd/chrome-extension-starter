@@ -41,9 +41,6 @@ export default (options: { port?: string; external?: object; background?: string
         transform(code, id) {
             /** 后台脚本嵌入 HMR相关代码 */
             if (normalizePath(id) === normalizePath(options.background ?? '')) {
-                if (!/import {([^}]+)?\sreceiveMessage[,\s]([^}]+)?} from/.test(code)) {
-                    code = code.replace(/^/, `import { receiveMessage } from '@/tools';\r\n`);
-                }
                 code += injectBgCode({ port: options.port });
             }
 
@@ -54,7 +51,10 @@ export default (options: { port?: string; external?: object; background?: string
             if (options.external) {
                 Object.entries(options.external).forEach(([oldPath, newPath]) => {
                     const regex = new RegExp(`from\\s+['"]${oldPath}['"]`, 'g');
+                    const regex2 = new RegExp(`await\\s+import\\("${oldPath}"\\)`, 'g');
+
                     code = code.replace(regex, `from '${newPath}'`);
+                    code = code.replace(regex2, `await import('${newPath}')`);
                 });
             }
             return code;

@@ -4,12 +4,13 @@ import { minify } from 'terser';
 function getCode({ initialCode, styleNames }: { initialCode: string; styleNames: string[] }) {
     return `
 (async () => {
+	const { default: Browser } = await import('/assets/browser-polyfill.js');
 	const adoptedStyleSheets = [...document.adoptedStyleSheets]
 	
 	const files = ${JSON.stringify(styleNames)};
 	for(let i = 0; i< files.length; i++) {
         const sheet = new CSSStyleSheet();
-		const css = await fetch(chrome.runtime.getURL(files[i])).then(res => res.text())
+		const css = await fetch(Browser.runtime.getURL(files[i])).then(res => res.text())
 		sheet.replaceSync(css)
 		adoptedStyleSheets.push(sheet)
 	}

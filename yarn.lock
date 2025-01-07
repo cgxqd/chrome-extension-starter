@@ -712,6 +712,11 @@
   resolved "https://registry.npmmirror.com/@types/web-bluetooth/-/web-bluetooth-0.0.16.tgz"
   integrity sha512-oh8q2Zc32S6gd/j50GowEjKLoOVOwHP/bWVjKJInBwQqdOYMdPrf1oVlelTlyfFK3CKxL1uahMDAr+vy8T7yMQ==
 
+"@types/webextension-polyfill@^0.8.3":
+  version "0.8.3"
+  resolved "https://registry.npmmirror.com/@types/webextension-polyfill/-/webextension-polyfill-0.8.3.tgz"
+  integrity sha512-GN+Hjzy9mXjWoXKmaicTegv3FJ0WFZ3aYz77Wk8TMp1IY3vEzvzj1vnsa0ggV7vMI1i+PUxe4qqnIJKCzf9aTg==
+
 "@typescript-eslint/eslint-plugin@^8.19.0", "@typescript-eslint/eslint-plugin@8.19.0":
   version "8.19.0"
   resolved "https://registry.npmmirror.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-8.19.0.tgz"
@@ -3422,6 +3427,11 @@ mute-stdout@^2.0.0:
   resolved "https://registry.npmmirror.com/mute-stdout/-/mute-stdout-2.0.0.tgz"
   integrity sha512-32GSKM3Wyc8dg/p39lWPKYu8zci9mJFzV1Np9Of0ZEpe6Fhssn/FbI7ywAMd40uX+p3ZKh3T5EeCFv81qS3HmQ==
 
+nanoevents@^6.0.2:
+  version "6.0.2"
+  resolved "https://registry.npmmirror.com/nanoevents/-/nanoevents-6.0.2.tgz"
+  integrity sha512-FRS2otuFcPPYDPYViNWQ42+1iZqbXydinkRHTHFxrF4a1CpBfmydR9zkI44WSXAXCyPrkcGtPk5CnpW6Y3lFKQ==
+
 nanoid@^3.3.7:
   version "3.3.8"
   resolved "https://registry.npmmirror.com/nanoid/-/nanoid-3.3.8.tgz"
@@ -4120,6 +4130,13 @@ send@0.19.0:
     range-parser "~1.2.1"
     statuses "2.0.1"
 
+serialize-error@^9.0.0:
+  version "9.1.1"
+  resolved "https://registry.npmmirror.com/serialize-error/-/serialize-error-9.1.1.tgz"
+  integrity sha512-6uZQLGyUkNA4N+Zii9fYukmNu9PEA1F5rqcwXzN/3LtBjwl2dFBbVZ1Zyn08/CGkB4H440PIemdOQBt1Wvjbrg==
+  dependencies:
+    type-fest "^2.5.3"
+
 serve-static@1.16.2:
   version "1.16.2"
   resolved "https://registry.npmmirror.com/serve-static/-/serve-static-1.16.2.tgz"
@@ -4538,6 +4555,11 @@ text-extensions@^2.0.0:
   resolved "https://registry.npmmirror.com/through/-/through-2.3.8.tgz"
   integrity sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==
 
+tiny-uid@^1.1.1:
+  version "1.1.2"
+  resolved "https://registry.npmmirror.com/tiny-uid/-/tiny-uid-1.1.2.tgz"
+  integrity sha512-0beRFXR+fv4C40ND2PqgNjq6iyB1dKXciKJjslLw0kPYCcR82aNd2b+Tt2yy06LimIlvtoehgvrm/fUZCutSfg==
+
 tinyexec@^0.3.0:
   version "0.3.2"
   resolved "https://registry.npmmirror.com/tinyexec/-/tinyexec-0.3.2.tgz"
@@ -4607,6 +4629,11 @@ type-fest@^0.20.2:
   version "0.20.2"
   resolved "https://registry.npmmirror.com/type-fest/-/type-fest-0.20.2.tgz"
   integrity sha512-Ne+eE4r0/iWnpAxD852z3A+N0Bt5RN//NjJwRd2VFHEmrywxf5vsZlh4R6lixl6B+wz/8d+maTSAkN1FIkI3LQ==
+
+type-fest@^2.5.3:
+  version "2.19.0"
+  resolved "https://registry.npmmirror.com/type-fest/-/type-fest-2.19.0.tgz"
+  integrity sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==
 
 type-is@~1.6.18:
   version "1.6.18"
@@ -4887,6 +4914,27 @@ vue-tsc@^2.2.0:
     "@vue/runtime-dom" "3.5.13"
     "@vue/server-renderer" "3.5.13"
     "@vue/shared" "3.5.13"
+
+webext-bridge@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.npmmirror.com/webext-bridge/-/webext-bridge-6.0.1.tgz"
+  integrity sha512-GruIrN+vNwbxVCi8UW4Dqk5YkcGA9V0ZfJ57jXP9JXHbrsDs5k2N6NNYQR5e+wSCnQpGYOGAGihwUpKlhg8QIw==
+  dependencies:
+    "@types/webextension-polyfill" "^0.8.3"
+    nanoevents "^6.0.2"
+    serialize-error "^9.0.0"
+    tiny-uid "^1.1.1"
+    webextension-polyfill "^0.9.0"
+
+webextension-polyfill@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.npmmirror.com/webextension-polyfill/-/webextension-polyfill-0.12.0.tgz"
+  integrity sha512-97TBmpoWJEE+3nFBQ4VocyCdLKfw54rFaJ6EVQYLBCXqCIpLSZkwGgASpv4oPt9gdKCJ80RJlcmNzNn008Ag6Q==
+
+webextension-polyfill@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.npmmirror.com/webextension-polyfill/-/webextension-polyfill-0.9.0.tgz"
+  integrity sha512-LTtHb0yR49xa9irkstDxba4GATDAcDw3ncnFH9RImoFwDlW47U95ME5sn5IiQX2ghfaECaf6xyXM8yvClIBkkw==
 
 which-boxed-primitive@^1.1.0, which-boxed-primitive@^1.1.1:
   version "1.1.1"

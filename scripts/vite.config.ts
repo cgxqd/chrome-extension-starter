@@ -43,6 +43,7 @@ const transformOption = {
     // 剥离外部依赖
     external: {
         vue: '/assets/vue.js',
+        'webextension-polyfill': '/assets/browser-polyfill.js',
     },
 };
 
