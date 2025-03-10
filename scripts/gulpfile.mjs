@@ -3,6 +3,7 @@ import express from 'express'
 import dotenv from 'dotenv';
 import fs from 'fs-extra';
 import cors from 'cors'
+import death from 'death';
 import { createRequire } from 'module';
 import { EventEmitter } from 'node:events'
 
@@ -12,6 +13,8 @@ let emitter = new EventEmitter();
 
 const require = createRequire(import.meta.url);
 const pkg = require('../package.json');
+
+let watcher = null
 
 /** 配置环境变量 */
 dotenv.config({ path: '../.env' });
@@ -36,25 +39,32 @@ app.listen(Number(globalThis.process.env.VITE_PORT), () => {
 })
 
 /** 消息通知 */
-const notify = (data = true) => emitter.emit('hmr', data);
+const notify = (/** @type {undefined} */ data) => emitter.emit('hmr', data);
 
 /** 监听 dist 资源 */
-const watchDistTask = (/** @type {() => void} */ done) => {
-	notify(true);
-	done();
+const watchDistTask = async (/** @type {() => void} */ done) => {
+	notify()
+	done()
 };
 
-/** 控制台退出异步操作 */
-;['SIGHUP', 'SIGINT', 'SIGTERM', 'SIGBREAK', 'SIGKILL'].map((name) => {
-	globalThis.process.on(name, async function () {
-		await fs.copy('../manifest.json', '../dist/manifest.json');
-		notify(false);
-		setTimeout(() => globalThis.process.exit(0), 250);
-	});
+/**
+ * @param {number | undefined} delay
+ */
+function sleep(delay) {
+	return new Promise(succ => setTimeout(succ, delay))
+}
+
+// 异步清理函数
+death(async () => {
+	await fs.copy('../manifest.json', '../dist/manifest.json');
+	notify()
+	watcher.close()
+	await sleep(250)
+	globalThis.process.exit(0)
 });
 
 /** 热更新 */
 export const hmr = (/** @type {() => void} */ done) => {
-	watch(['../dist/**/*'], watchDistTask);
+	watcher = watch(['../dist/**/*'], watchDistTask);
 	done();
 };

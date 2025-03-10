@@ -5,15 +5,16 @@ const injectBgCode = (option: { port: string }) => {
     const { port } = option;
     return `
 (async () => {
-	const manifest = await fetch(globalThis.chrome.runtime.getURL('manifest.json'))
+	const manifest = await fetch('./manifest.json')
 		.then((res) => res.json())
+	console.log(manifest)
 	if (manifest.hot) {
 		function onHMR (env) {
         	console.log('%c[${name}] connection established', 'color: green');
 			const source = new EventSource('http://localhost:${port}/hmr');
 			source.addEventListener('message', () => {
 				if (env === 'background') {
-					chrome.runtime.reload()
+					Browser.runtime.reload()
 				}
 				if (env === 'contentScript') {
 					window.location.reload();
@@ -21,9 +22,9 @@ const injectBgCode = (option: { port: string }) => {
 			});
 		}
 		onHMR('background')
-		chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+		Browser.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 			if (changeInfo.status === 'complete' && tab.url) {
-				chrome.scripting.executeScript({
+				Browser.scripting.executeScript({
 					target: { tabId },
 					func: onHMR,
 					args: ['contentScript']

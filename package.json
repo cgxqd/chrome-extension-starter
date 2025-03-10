@@ -30,6 +30,7 @@
 		"cors": "^2.8.5",
 		"cross-env": "^7.0.3",
 		"cz-git": "^1.6.1",
+		"death": "^1.1.0",
 		"dotenv": "^16.4.5",
 		"eslint": "^9.17.0",
 		"eslint-plugin-vue": "^9.32.0",
